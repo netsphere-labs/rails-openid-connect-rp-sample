@@ -10,17 +10,23 @@ Implicit Flow による RP のサンプル。
 
 [OpenID Foundationのガイドラインに沿ったRailsでのOIDC Implicit Flow実装](https://selmertsx.hatenablog.com/entry/2018/08/22/104510)
 
-* Ruby on Rails による実装.
-* OP は Azure AD.
-* アクセストークンの検証が必要だが、そもそも取得していない?
+  * Ruby on Rails による実装.
+  * OP は Azure AD.
+  * アクセストークンの検証が必要だが、そもそも取得していない?
 
 
 ## インストール
 
-* 環境
-  Ruby on Rails 4.2
-  OP は Google と Yahoo JP.
-  
+* Requirements
+
+  - Ruby on Rails v4.2
+  - openid_connect
+
+This sample application does not use omniauth-openid-connect.
+
+  OpenID Connect Provider (OP) は Google と Yahoo JP.
+
+
 * Configuration
   `config/auth/google.yml` と `config/auth/yahoojp.yml` ファイルを適宜、編集してください。
 
