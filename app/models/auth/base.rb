@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 
+require 'base64'  # 標準モジュール
+
 class Auth::Base
   include ActiveModel::Model
 
@@ -58,7 +60,7 @@ class Auth::Base
 
     def left_half_hash_of string, hash_length
       digest = OpenSSL::Digest.new("SHA#{hash_length}").digest string
-      UrlSafeBase64.encode64 digest[0, hash_length / (2 * 8)]
+      Base64.urlsafe_encode64 digest[0, hash_length / (2 * 8)], padding:false
     end
 
     def decode_token response, nonce
@@ -75,7 +77,8 @@ class Auth::Base
       hash_length = jwt.alg[2, 3].to_i
       if id_token.at_hash !=
                 left_half_hash_of(response['access_token'], hash_length)
-        raise "invalid access_token!!"
+        raise "invalid access_token!!: id_token.at_hash, left_half_hash = " +
+              id_token.at_hash + ", " + left_half_hash_of(response['access_token'], hash_length)
       end
 
       return id_token, response['access_token']

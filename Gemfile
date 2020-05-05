@@ -5,12 +5,17 @@
 
 source 'https://rubygems.org'
 
+# Downgrade (remove default flag):
+#    gem environment
+#      - INSTALLATION DIRECTORY: /usr/local/lib/ruby/gems/2.5.0
+#    rm /usr/local/lib/ruby/gems/2.5.0/specifications/default/bundler-2.1.4.gemspec 
+gem 'bundler', '~> 1.17'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.11'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.13'
 
 # Use SCSS for stylesheets
 # v5.0.8 から Rails 5.2用. => 5.0.7 で固定.
@@ -60,7 +65,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  # v3.3.1 で Rails 5.0  => v3.3.0 or v3.2.1 で固定.
+  # v3.3.1 で Rails 5.0  => v3.2.1 で固定.
   gem 'web-console', '~> 3.2.1'
 
   # Spring speeds up development by keeping your application running in the

@@ -1,4 +1,6 @@
 
+# See https://e.developer.yahoo.co.jp/dashboard/
+
 development: &defaults
   # https://auth.login.yahoo.co.jp/yconnect/v2/.well-known/openid-configuration
   issuer: https://auth.login.yahoo.co.jp/yconnect/v2

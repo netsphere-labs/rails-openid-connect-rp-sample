@@ -6,14 +6,6 @@ Implicit Flow による RP のサンプル。
 [OpenID Connect Implicit Client Implementer's Guide 1.0](https://openid.net/specs/openid-connect-implicit-1_0.html) を実装。
 
 
-## 先行例
-
-[OpenID Foundationのガイドラインに沿ったRailsでのOIDC Implicit Flow実装](https://selmertsx.hatenablog.com/entry/2018/08/22/104510)
-
-  * Ruby on Rails による実装.
-  * OP は Azure AD.
-  * アクセストークンの検証が必要だが、そもそも取得していない?
-
 
 ## インストール
 
@@ -72,3 +64,14 @@ Implicit Flow では, RP から OP に対する直接の問い合わせとレス
       return id_token, response['access_token']
     end
 ```
+
+
+
+## 先行例
+
+[OpenID Foundationのガイドラインに沿ったRailsでのOIDC Implicit Flow実装](https://selmertsx.hatenablog.com/entry/2018/08/22/104510)
+
+  * Ruby on Rails による実装.
+  * OP は Azure AD.
+  * アクセストークンの検証が必要だが、そもそも取得していない?
+

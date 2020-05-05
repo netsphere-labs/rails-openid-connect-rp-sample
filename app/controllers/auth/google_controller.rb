@@ -19,12 +19,16 @@ class Auth::GoogleController < Auth::BaseController
 
   # ログイン処理
   def catch_response
-    id_token, access_token = Auth::Google.decode_token params, session[:nonce]
+    begin
+      id_token, access_token = Auth::Google.decode_token params, session[:nonce]
 
-    render :text => "<p>" + ERB::Util.html_escape(id_token.inspect) +
+      render :text => "<p>" + ERB::Util.html_escape(id_token.inspect) +
                     "<p>" + Auth::Google.options[:client_id] +
                     "<p>" + session[:nonce],
            :layout => false
-    session.delete(:nonce)
+      session.delete(:nonce)
+    rescue Exception => err
+      render :text => 'Critical error: ' + ERB::Util.html_escape(err.inspect)
+    end
   end
 end # class Auth::GoogleController
