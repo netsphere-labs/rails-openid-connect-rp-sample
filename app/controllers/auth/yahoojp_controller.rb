@@ -5,8 +5,10 @@
 
 class Auth::YahoojpController < Auth::BaseController
 
-  # GET /auth/yahoojp/new
-  def new
+  # POST /auth/yahoojp
+  def create
+    raise SecurityError if request.request_method != 'POST'
+
     session[:state] = SecureRandom.hex(32)
     session[:nonce] = SecureRandom.hex(32)
     redirect_to Auth::Yahoojp.authorization_uri(

@@ -5,8 +5,10 @@
 
 class Auth::GoogleController < Auth::BaseController
 
-  # GET /auth/google/new
-  def new
+  # POST /auth/google
+  def create
+    raise SecurityError if request.request_method != 'POST'
+    
     session[:state] = SecureRandom.hex(32)
     session[:nonce] = SecureRandom.hex(32)
     redirect_to Auth::Google.authorization_uri(
