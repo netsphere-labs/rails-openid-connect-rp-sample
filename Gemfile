@@ -10,6 +10,7 @@ source 'https://rubygems.org'
 #      - INSTALLATION DIRECTORY: /usr/local/lib/ruby/gems/2.5.0
 #    rm /usr/local/lib/ruby/gems/2.5.0/specifications/default/bundler-2.1.4.gemspec 
 gem 'bundler', '~> 1.17'
+gem 'i18n', '~> 0.9'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.11'
@@ -73,4 +74,4 @@ group :development do
   gem 'spring'
 end
 
-gem 'openid_connect', '~> 1.1.8'
+gem 'openid_connect', '~> 1.1'
