@@ -24,13 +24,14 @@ class Auth::GoogleController < Auth::BaseController
     begin
       id_token, access_token = Auth::Google.decode_token params, session[:nonce]
 
-      render :text => "<p>" + ERB::Util.html_escape(id_token.inspect) +
+      # Rails 6: render text: ではなく, render plain:
+      render plain: "<p>" + ERB::Util.html_escape(id_token.inspect) +
                     "<p>" + Auth::Google.options[:client_id] +
                     "<p>" + session[:nonce],
-           :layout => false
+             layout: false
       session.delete(:nonce)
     rescue Exception => err
-      render :text => 'Critical error: ' + ERB::Util.html_escape(err.inspect)
+      render plain: 'Critical error: ' + ERB::Util.html_escape(err.inspect)
     end
   end
 end # class Auth::GoogleController

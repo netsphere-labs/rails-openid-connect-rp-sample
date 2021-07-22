@@ -9,7 +9,8 @@ require 'openid_connect'
 # 'openid_connect' パッケージは, id_token の検証を行うルーチンがあるが,
 # 署名の検証までは行わないように見えた。
 # Implicit Flow では、 署名が IdP のものか検証を行わないと, セキュリティ上致命的になる。
-# => 動作を確認してみる.
+# 動作を確認してみる.
+# => 公開鍵を渡してやれば decode() 内で検証る。
 
 # OpenID Connect Implicit Client Implementer's Guide 1.0
 #     ID Tokens MUST be signed using JWS. Clients MUST validate the ID Token

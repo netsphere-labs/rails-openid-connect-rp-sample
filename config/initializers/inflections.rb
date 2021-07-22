@@ -7,7 +7,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'
-  inflect.uncountable %w( fish sheep google yahoojp )
+  inflect.uncountable %w( fish sheep google yahoojp )  # 固有名詞
 end
 
 # These inflection rules are supported but not enabled by default:

@@ -11,7 +11,8 @@ Implicit Flow による RP のサンプル。
 
 * Requirements
 
-  - Ruby on Rails v4.2
+  - Ruby 3.0
+  - Ruby on Rails v6.1 
   - openid_connect
 
 This sample application does not use omniauth-openid-connect.
@@ -20,7 +21,8 @@ This sample application does not use omniauth-openid-connect.
 
 
 * Configuration
-  `config/auth/google.yml` と `config/auth/yahoojp.yml` ファイルを適宜、編集してください。
+  `config/auth/google.yml.sample` と `config/auth/yahoojp.yml.sample` ファイルをコピー
+  し, 適宜、編集してください。
 
   client_id を設定してください。
   Implicit Flow では client_secret を保存してはなりません。

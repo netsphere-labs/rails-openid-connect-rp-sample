@@ -23,10 +23,11 @@ class Auth::YahoojpController < Auth::BaseController
   def catch_response
     id_token, access_token = Auth::Yahoojp.decode_token params, session[:nonce]
 
-    render :text => "<p>" + ERB::Util.html_escape(id_token.inspect) +
-                    "<p>" + Auth::Yahoojp.options[:client_id] +
-                    "<p>" + session[:nonce],
-           :layout => false
+    # Rails6: render text: は廃止.
+    render plain: "<p>" + ERB::Util.html_escape(id_token.inspect) +
+                  "<p>" + Auth::Yahoojp.options[:client_id] +
+                  "<p>" + session[:nonce],
+           layout: false
     session.delete(:nonce)
   end
 end # class Auth::YahoojpController

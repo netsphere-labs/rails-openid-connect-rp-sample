@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 class Auth::BaseController < ApplicationController
-  # redirect back
+  # IdP からの redirect back
   def callback
     # Webブラウザ経由, JavaScript でパラメタを分解する
     @provider = controller_name()
