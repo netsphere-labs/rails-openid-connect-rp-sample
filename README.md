@@ -29,7 +29,11 @@ This sample application does not use omniauth-openid-connect.
   
 * How to run the test suite
 
+```bash
+    $ rails webpacker:compile
     $ passenger start
+```
+
 `localhost:4000` で起動します。
 
 

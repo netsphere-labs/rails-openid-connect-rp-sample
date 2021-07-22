@@ -46,4 +46,4 @@ config/auth/google.yml
 config/auth/yahoojp.yml
 
 Gemfile.lock
-
+yarn.lock
