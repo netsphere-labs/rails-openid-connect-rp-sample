@@ -1,5 +1,5 @@
 
-# OpenID Connect - Relying Party (RP) sample
+# OpenID Connect - Implicit Flow Relying Party (RP) sample
 
 Implicit Flow による RP のサンプル。See https://www.nslabs.jp/digital-identity.rhtml
 
