@@ -1,7 +1,7 @@
 
 # OpenID Connect - Relying Party (RP) sample
 
-Implicit Flow による RP のサンプル。
+Implicit Flow による RP のサンプル。See https://www.nslabs.jp/digital-identity.rhtml
 
 [OpenID Connect Implicit Client Implementer's Guide 1.0](https://openid.net/specs/openid-connect-implicit-1_0.html) を実装。
 
