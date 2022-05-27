@@ -6,7 +6,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.0.1'
+ruby '>= 3.0.1'
+
+if RUBY_VERSION >= "3.1.0"
+#   Error: The application encountered the following error: cannot load such file -- net/smtp (LoadError)
+#   /opt/rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/bootsnap-1.11.1/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:15:in `require'
+# gem化されたのが原因. 明記する.
+  gem 'net-smtp', require: false
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
