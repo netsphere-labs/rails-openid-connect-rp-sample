@@ -83,4 +83,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追加.
-gem 'openid_connect', '~> 1.1'
+# depends on json, validate_email, validate_url, webfinger, ...
+gem 'json-jwt', '>= 1.14.0' # OpenSSL 3.0
+gem 'openid_connect', '~> 1.4.2'  # v1.3 は不可.
