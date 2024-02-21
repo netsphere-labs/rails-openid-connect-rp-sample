@@ -5,9 +5,11 @@ Implicit Flow による RP のサンプル。See https://www.nslabs.jp/digital-i
 
 [OpenID Connect Implicit Client Implementer's Guide 1.0](https://openid.net/specs/openid-connect-implicit-1_0.html) を実装。
 
-[historical]
+[2024-02]
 OpenID Connect 認証仕様の基礎である OAuth 2.0 認可 (認証にあらず) フレームワークについて、改定作業が行われている. [The OAuth 2.1 Authorization Framework Internet-Draft](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-10). Implicit Flow は単に削除される見込み。`response_type` = `id_token token` は廃止。
-今後は Authorization Code Flow with PKCE を使え。
+
+今後は Authorization Code Flow with PKCE を使え。[/2024-02 ここまで]
+
 
 
 ## インストール
