@@ -1,17 +1,15 @@
 {
-  "name": "oidc-implicit-rp",
+  "name": "open-id-connect-rp-sample",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.4.0",
-    "jquery": "^3.6.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "jquery": "^3.7.1",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   },
   "version": "0.1.0",
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
   }
 }

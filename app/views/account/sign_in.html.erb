@@ -1,0 +1,56 @@
+
+
+<% if current_user %>
+<h1>別のユーザでログイン</h1>
+<% else %>
+<h1>ログイン</h1>
+<% end %>
+
+
+<h2>Authorization Code Flow (<code>response_type=code</code>)</h2>
+
+<table>
+  <tr>
+    <th>IdP  <th>Log-in   <th>Comment
+
+  <tr><td>Google
+    <td><%= link_to "Googleでログイン (Code Flow)", "/auth/google_codeflow", method: :post %>
+
+  <tr><td>Yahoo JP
+    <td><%= link_to "Yahoo JP でログイン (Code Flow)", "/auth/yahoojp_codeflow", method: :post %>
+
+  <tr><td>Azure AD
+    <td><%= link_to "Azure AD でログイン (Code Flow)", "/auth/azure_ad_codeflow", method: :post %>
+    <td><i>OpenID Connect RP-Initiated Logout 1.0</i> をサポートしている。RP 側から <code>end_session_endpoint</code> に要求を投げる。
+      
+  <tr><td>Nov OP Sample
+    <td><%= link_to "Nov OP Sample でログイン (Code Flow)", "/auth/nov_op_sample", method: :post %>
+</table>
+
+
+
+<h2>Implicit Flow (<code>response_type=id_token</code>)</h2>
+
+<p>IdP が <code>id_token</code> にユーザ情報を含める拡張を行っている場合のみ、利用可能。<i>OpenID Connect Implicit Client Implementer's Guide 1.0</i> では, <code>response_type = [:id_token, :token]</code> にするようになっている。
+
+<table>
+  <tr>
+    <th>IdP  <th>Log-in  <th>Comment
+
+  <tr><td>Google
+    <td><%= link_to "Googleでログイン (Implicit Flow)", "/auth/google_implicit", method: :post %>
+
+      
+  <tr><td>Yahoo JP
+    <td><%= link_to "Yahoo JP でログイン (Implicit Flow)", "/auth/yahoojp_implicit", method: :post %>
+    <td>動作しない。Yahoo JP は, 発行する <code>id_token</code> にユーザ情報を含めない。
+
+  <tr><td>Azure AD
+    <td><%= link_to "Azure AD でログイン (Implicit Flow)", "/auth/azure_ad_implicit", method: :post %>
+    <td>Azure AD の管理画面 (管理 &gt; 認証) にて, 暗黙的な許可を明示的に有効にしている場合のみ利用可能。デフォルトは無効。
+
+  <tr><td>Nov OP Sample
+    <td><%= link_to "Nov OP Sample でログイン (Implicit Flow)", "/auth/nov_op_sample_implicit", method: :post %>
+</table>
+
+

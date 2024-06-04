@@ -1,6 +1,9 @@
 
-# OpenID Connect - Relying Party (RP) Sample
+# OpenID Connect Relying Party (RP) Sample
 # Copyright (c) Hisashi Horikawa.
+
+
+# 編集したら, <kbd>rails routes</kbd> で確認すること.
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, 
@@ -8,6 +11,16 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
+  # 単数形リソースであっても，デフォルトコントローラ名は複数形.
+  # => `controller:` でクラス名を指定.
+  resource :account, only: [:show, :create, :edit, :update],
+                     controller: 'account' do
+    get 'sign_in'
+  end
+
+  # UserSessionsController
+  resource :user_session, only: %i[create, destroy]
 
   # Example resource route within a namespace:
   #   namespace :admin do

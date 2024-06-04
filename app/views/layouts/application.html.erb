@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OpenID Connect Implicit RP Sample</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OpenIdConnect RP Sample</title>
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_pack_tag 'application' %>
+  <%= javascript_include_tag "application", 
+                             "data-turbo-track": "reload", type: "module" %>
 </head>
 <body>
 
-<%= yield %>
+<div style="background-color:#dddddd">
+<% if current_user %>    
+  現在のユーザ: <%= current_user.name %>
+  <%= link_to "ログアウト", "/session", method: :delete %>
+<% end %>
+</div>
+
+<% flash.each do |message_type, message| %>
+  <div style="background-color:#ddffdd"><%= message %></div>
+<% end %>
+
+
+  <%= yield %>
 
 </body>
 </html>
