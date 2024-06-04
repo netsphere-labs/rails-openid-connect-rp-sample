@@ -1,8 +1,7 @@
 
 # An OpenID Connect Relying Party (RP) sample
 
-OpenID Connect Provider (OP or IdP) 開発とデバッグのために、いろいろな投げつけをする
-サンプル。
+OpenID Connect Provider (OP or IdP) 開発とデバッグのために、いろいろな投げつけをするサンプル。
 
 See https://www.nslabs.jp/identity-samples.rhtml
 
@@ -23,7 +22,7 @@ Tested Google, Yahoo! JAPAN, Azure AD, and Nov OP Sample.
 
 生の OAuth 2.0 の Implicit Flow を「認証」に使おうとすると、すごく巨大な穴が空く。OpenID Connect の Implicit Flow はその穴を塞いでいるので問題ない。しかし、巷の解説では混同しているものが非常に多い。
 
-2024 年6月現在, OAuth 2.1 に向けた改訂作業が進んでいる。文言もだいぶ落ち着いてきて、もうすぐ最終化か? https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-11 
+2024 年6月現在, OAuth 2.1 に向けた改訂作業が進んでいる。文言もだいぶ落ち着いてきて、もうすぐ最終化か? [The OAuth 2.1 Authorization Framework Internet-Draft](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-11)
 OAuth 2.1 は, 単に Implicit Flow が廃止になった。
 
 "public clients" も Authorization Code Flow でカバーしなければならず、Mobile & Desktop Apps では, `nonce` 必須, PKCE 必須。
