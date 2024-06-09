@@ -9,12 +9,17 @@
 
 <h2>Authorization Code Flow (<code>response_type=code</code>)</h2>
 
+<p>FAPI で PKCE が必須になった。が、クライアント種別が [Webアプリケィション] なら、どう考えても不要。リダイレクトバックで認可コードを横取りされる状況って、Webブラウザが乗っ取られたか DNS が乗っ取られたかで、それはもう何でもありなのでは?
+
+<p>Public client で Authorization Code Flow を使う場合は、当然, PKCE が必要。
+
+  
 <table>
   <tr>
     <th>IdP  <th>Log-in   <th>Comment
 
   <tr><td>Google
-    <td><%= link_to "Googleでログイン (Code Flow)", "/auth/google_codeflow", method: :post %>
+    <td><%= link_to "Googleでログイン (Code Flow with PKCE)", "/auth/google_codeflow", method: :post %>
 
   <tr><td>Yahoo JP
     <td><%= link_to "Yahoo JP でログイン (Code Flow)", "/auth/yahoojp_codeflow", method: :post %>
@@ -29,9 +34,9 @@
 
 
 
-<h2>Implicit Flow (<code>response_type=id_token</code>)</h2>
+<h2>Implicit Flow (<code>response_type=id_token token</code>)</h2>
 
-<p>IdP が <code>id_token</code> にユーザ情報を含める拡張を行っている場合のみ、利用可能。<i>OpenID Connect Implicit Client Implementer's Guide 1.0</i> では, <code>response_type = [:id_token, :token]</code> にするようになっている。
+<p>"<code>id_token</code>" のみにするのは誤り。たまたま IdP がレスポンスにユーザ情報を含める拡張を行っている場合のみ、利用可能。See <i>OpenID Connect Implicit Client Implementer's Guide 1.0</i> などなど。
 
 <table>
   <tr>
@@ -40,7 +45,7 @@
   <tr><td>Google
     <td><%= link_to "Googleでログイン (Implicit Flow)", "/auth/google_implicit", method: :post %>
 
-      
+
   <tr><td>Yahoo JP
     <td><%= link_to "Yahoo JP でログイン (Implicit Flow)", "/auth/yahoojp_implicit", method: :post %>
     <td>動作しない。Yahoo JP は, 発行する <code>id_token</code> にユーザ情報を含めない。

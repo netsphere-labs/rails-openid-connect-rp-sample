@@ -5,7 +5,7 @@ OpenID Connect Provider (OP or IdP) 開発とデバッグのために、いろ�
 
 See https://www.nslabs.jp/identity-samples.rhtml
 
-OmniAuth を使っていたのを止め、実装しなおし。
+OmniAuth を使っていたのを止め、実装しなおした。
 
 
 
@@ -13,19 +13,20 @@ OmniAuth を使っていたのを止め、実装しなおし。
 
 OpenID Connect Provider (OP) は Google と Yahoo JP, それに https://github.com/netsphere-labs/openid_connect_sample/
 
-
-(1) Authorization Code Flow with PKCE によるログイン   ●●未了
-
-Tested Google, Yahoo! JAPAN, Azure AD, and Nov OP Sample.
-
 このサンプルは, Just-in-time User Provisioning (JIT Provisioning) の例にもなっている。あらかじめユーザ登録されていなくても、シングルサインオンで回ってくるユーザ情報で自サイトにも登録する。
+
+
+(1) Authorization Code Flow with PKCE によるログイン
+
+ - Google 実装すみ
+ - Yahoo! JAPAN, Azure AD, and Nov OP Sample.  ●●未了
 
 生の OAuth 2.0 の Implicit Flow を「認証」に使おうとすると、すごく巨大な穴が空く。OpenID Connect の Implicit Flow はその穴を塞いでいるので問題ない。しかし、巷の解説では混同しているものが非常に多い。
 
 2024 年6月現在, OAuth 2.1 に向けた改訂作業が進んでいる。文言もだいぶ落ち着いてきて、もうすぐ最終化か? [The OAuth 2.1 Authorization Framework Internet-Draft](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-11)
-OAuth 2.1 は, 単に Implicit Flow が廃止になった。
+OAuth 2.1 は, 穴を塞ぐのではなく, 単に Implicit Flow を廃止にした。
 
-"public clients" も Authorization Code Flow でカバーしなければならず、Mobile & Desktop Apps では, `nonce` 必須, PKCE 必須。
+今後は "public clients" も Authorization Code Flow でカバーしなければならず、Mobile & Desktop Apps では, `nonce` 必須, PKCE 必須。
 
 
 
@@ -33,7 +34,8 @@ OAuth 2.1 は, 単に Implicit Flow が廃止になった。
 
 [OpenID Connect Implicit Client Implementer's Guide 1.0](https://openid.net/specs/openid-connect-implicit-1_0.html) を実装。
 
-`omniauth_openid_connect` v0.4.0 は, <code>response_type=id_token</code> しかサポートしていない。これは不正で, たまたま IdP が <code>id_token</code> レスポンスにユーザ情報を含める拡張を行っている場合のみ、利用可能。Yahoo! JAPAN ID連携は、ユーザ情報を含めないので、動作しない。
+`omniauth_openid_connect` v0.4.0 は, <code>response_type=id_token</code> しかサポートしていない。これは不正で, たまたま IdP が <code>id_token</code> レスポンスにユーザ情報を含める拡張を行っている場合のみ、利用可能。
+Yahoo! JAPAN ID連携は、ユーザ情報を含めないので、動作しない。
 
 正しくは `id_token token` を投げなければならない。
 
@@ -72,37 +74,27 @@ OmniAuth はメジャーだが、屋上屋になるため、omniauth-openid-conn
 </pre>
 
 
-2) `config/auth/google.yml.sample` と `config/auth/yahoojp.yml.sample` ファイルをコピー
-  し, 適宜、編集してください。
+2) `config/auth/google.yml.sample` と `config/auth/yahoojp.yml.sample` ファイルをコピーし, 適宜、編集してください。
 
-  client_id を設定してください。
-  Implicit Flow では client_secret を保存してはなりません。
+  `client_id` を設定してください。
+  Implicit Flow では `client_secret` を保存してはなりません。
   
 
 
-3) 次のような起動スクリプトを作って, 実行.
-
-```sh
-#!/bin/sh
-
-export GOOGLE_CLIENT_ID='..........'
-export GOOGLE_CLIENT_SECRET='.......'
-
-export MYSAMPLE_HOST='http://localhost:4000'
-passenger start -a localhost -p 4000
-```
+3) 実行!
 
 リダイレクトURI は次のとおり;
-`http://localhost:4000/auth/google_codeflow/callback`
-`http://localhost:4000/auth/google_implicit/implicit_back`
+ - `http://localhost:3030/auth/google_codeflow/callback`
+ - `http://localhost:3030/auth/google_implicit/callback`
+ 
 
 
 
 
-## 実装上の注意
+## Implicit Flow 実装上の注意
 
-Authorization Code Flow は, client secret を安全に保持できない状況では、使ってはならない。
-Implicit Flow は, このような状況でも使えるように, client secret を必要としない。(保存してはならない.)
+Authorization Code Flow は, クライアントが client secret を安全に保持できない状況では、使ってはならなかった。
+Implicit Flow は, このような状況でも使えるように, client secret を必要としない (保存してはならない)。
 
 `"response_type"` value は, `id_token token` とする。`id_token` は, Self-Issued OpenID Provider でのみ使われる。
 

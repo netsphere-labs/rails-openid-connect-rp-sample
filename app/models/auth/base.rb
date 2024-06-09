@@ -6,6 +6,7 @@ class Auth::Base
   include ActiveModel::Model
 
   class << self
+    # 設定ファイルから読み込んだ内容.
     attr_reader :options
 
     attr_accessor :config_file
@@ -15,12 +16,15 @@ class Auth::Base
     def config
       return @config if @config
 
-      @options = YAML.load_file(Rails.root.to_s + "/" + config_file)[Rails.env].symbolize_keys
+      # Ruby 3.1 で YAML (psych) 4.0.0 がバンドル。非互換.
+      @options = YAML.load_file(Rails.root.to_s + "/" + config_file,
+                                aliases:true)[Rails.env].symbolize_keys
       raise ArgumentError if !options[:client_id]
       raise ArgumentError if !options[:redirect_uri]
       # 重要! Implicit Flow では secret を保存してはならない.
-      raise SecurityError if options[:client_secret] 
+      #raise SecurityError if options[:client_secret] 
 
+      # FAPI: discover が必須.
       @config = OpenIDConnect::Discovery::Provider::Config.discover!(
                        options[:issuer])
       return @config
@@ -28,11 +32,13 @@ class Auth::Base
 
     
     def client
+      return @client if @client
+      
       config()
-      @client ||= OpenIDConnect::Client.new(
+      @client = OpenIDConnect::Client.new(
         ### Rack::OAuth2::Client
         :identifier   => options[:client_id],  # required
-        #:secret       => config[:client_secret],
+        :secret       => options[:client_secret] ,   # code flow 時のみ
         #:private_key  
         :redirect_uri => options[:redirect_uri],
         #:scheme
@@ -44,14 +50,25 @@ class Auth::Base
         :userinfo_endpoint      => config.userinfo_endpoint,
         #:expires_in
       )
+      return @client
     end
 
+    
     # @return Authentication Request URL
     def authorization_uri(options = {})
-      client.authorization_uri options.merge(
-                                 scope: config.scopes_supported)
+      # ここは `options` のほうが優先
+      client.authorization_uri( {
+                scope: config.scopes_supported
+      }.merge(options) )
     end
 
+    def jwks
+      @jwks ||= JSON::JWK::Set.new(#JSON.parse(
+        OpenIDConnect.http_client.get(config.jwks_uri).body # これは Hash
+      )#)
+    end
+
+    
     # @return [JSON::JWK::Set] IdP の公開鍵の組. JSON Web Key Set (JWKS)
     def idp_public_keys
       keys = config.jwks  # jwks_uri に対する HTTP アクセスが起こる.

@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   namespace :auth do
-    resource :google do
+    resource :google_codeflow, controller:'google_codeflow', only:[:create] do
+      get 'callback'  # redirect back
+    end
+    
+    resource :google_implicit, controller:'google_implicit' do
       get 'callback'  # redirect back
       post 'catch_response'
     end

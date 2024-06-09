@@ -1,0 +1,22 @@
+
+# Google Cloud Platform
+# https://console.cloud.google.com/
+#   APIとサービス > 認証情報
+
+default: &defaults
+  # https://accounts.google.com/.well-known/openid-configuration
+  issuer: https://accounts.google.com
+
+development: 
+  <<: *defaults
+  # Google API と完全に合わせる
+  client_id: クライアントID
+  client_secret: クライアント秘密   Code Flow のときのみ.
+  redirect_uri: http://localhost:3030/auth/google_codeflow/callback
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  redirect_uri: https://connect-op.herokuapp.com/connect/google

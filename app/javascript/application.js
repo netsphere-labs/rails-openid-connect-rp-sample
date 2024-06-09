@@ -7,6 +7,8 @@ import Rails from "@rails/ujs";
 import "./channels";
 
 // jQuery を追加
-require('jquery');
+// require('jquery');  こうじゃない
+//import * as jquery from "jquery";
+//window.$ = window.jQuery = jquery;
 
 Rails.start();
