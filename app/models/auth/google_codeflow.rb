@@ -9,6 +9,8 @@ class Auth::GoogleCodeflow < Auth::Base
     client.authorization_code = code
 
     # `Rack::OAuth2::Client` のメソッド. ここで IdP にアクセス
+    # Verifier が異なる場合、ここで `Rack::OAuth2::Client::Error` 例外:
+    #    invalid_grant :: Invalid code verifier.
     token = client.access_token! :secret_in_body, {
                                    code_verifier: verifier}  
     id_token = OpenIDConnect::ResponseObject::IdToken.decode(

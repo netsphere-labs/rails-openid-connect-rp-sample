@@ -21,6 +21,10 @@ Bundler.require(*Rails.groups)
 
 module OpenIdConnectRpSample
   class Application < Rails::Application
+    # Default: 自動的にすべての helpers が `include` される.
+    # 次の設定でコントローラと同名のヘルパに限定できる
+    config.action_controller.include_all_helpers = false
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
