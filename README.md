@@ -19,7 +19,8 @@ OpenID Connect Provider (OP) は Google と Yahoo JP, それに [Rails OpenID Co
 (1) Authorization Code Flow with PKCE によるログイン
 
  - Google 実装すみ
- - Yahoo! JAPAN, Azure AD, and Nov OP Sample.  ●●未了
+ - Rails OpenID Connect IdP AS  実装すみ
+ - Yahoo! JAPAN, Azure AD    ●●未了
 
 生の OAuth 2.0 の Implicit Flow を「認証」に使おうとすると、すごく巨大な穴が空く。OpenID Connect の Implicit Flow はその穴を塞いでいるので問題ない。しかし、巷の解説では混同しているものが非常に多い。
 
