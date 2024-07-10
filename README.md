@@ -34,10 +34,11 @@ OAuth 2.1 は, 穴を塞ぐのではなく, 単に Implicit Flow を廃止にし
 
 [OpenID Connect Implicit Client Implementer's Guide 1.0](https://openid.net/specs/openid-connect-implicit-1_0.html) を実装。
 
-`omniauth_openid_connect` v0.4.0 は, <code>response_type=id_token</code> しかサポートしていない。これは不正で, たまたま IdP が <code>id_token</code> レスポンスにユーザ情報を含める拡張を行っている場合のみ、利用可能。
-Yahoo! JAPAN ID連携は、ユーザ情報を含めないので、動作しない。
+`omniauth_openid_connect` v0.4.0 は, <code>response_type=id_token</code> しかサポートしていない。これはアクセストークンが得られず、妥当ではない。
 
-正しくは `id_token token` を投げなければならない。
+仕様では, IdP は, アクセストークンを発行しない場合に限って <code>id_token</code> レスポンスにユーザ情報を含めることになっている (Core 1.0: section 5.4) が、Yahoo! JAPAN ID 連携はこの仕様に適合せずユーザ情報を含めないので、動作しない。
+
+ポータビリティのため, クライアントから `id_token token` を投げたうえで, UserInfo エンドポイントからユーザ情報を取得する。
 
 Azure AD は、管理画面で Implicit Flow を有効にしている場合のみ。
 
@@ -83,11 +84,11 @@ OmniAuth はメジャーだが、屋上屋になるため、omniauth-openid-conn
 
 3) 実行!
 
-リダイレクトURI は次のとおり;
+Redirect URI は次のとおり;
  - `http://localhost:3030/auth/google_codeflow/callback`
  - `http://localhost:3030/auth/google_implicit/callback`
  
-
+http://localhost:3030/auth/connect_op_sample/callback
 
 
 

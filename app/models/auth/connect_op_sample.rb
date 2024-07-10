@@ -1,7 +1,7 @@
 
 # with PKCE. 非常に簡単.
-class Auth::GoogleCodeflow < Auth::Base
-  self.config_file = "config/auth/google_codeflow.yml"
+class Auth::ConnectOpSample < Auth::Base
+  self.config_file = "config/auth/connect_op_sample.yml"
 
   # Sorcery -> user_class -> callback
   def self.authenticate(code, nonce, verifier)
@@ -12,16 +12,17 @@ class Auth::GoogleCodeflow < Auth::Base
     # Verifier が異なる場合、ここで `Rack::OAuth2::Client::Error` 例外:
     #    invalid_grant :: Invalid code verifier.
     token = client.access_token! :secret_in_body, {
-                                   code_verifier: verifier}
-    # ここで署名を検証
+                                   code_verifier: verifier}  
     id_token = OpenIDConnect::ResponseObject::IdToken.decode(
       token.id_token, jwks
     )
-    # 内容の検証に失敗すると例外
+    # 検証に失敗すると例外
     id_token.verify!({ :issuer => config.issuer,
                          :nonce => nonce,
                          :client_id => options[:client_id] })
 
+    userinfo = token.userinfo!
+    
     ### id_token が得られた. ここからユーザ登録
     
     email = id_token.raw_attributes[:email]

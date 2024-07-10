@@ -20,34 +20,44 @@ ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticit
 =end
 
 
-class Auth::GoogleImplicitController < Auth::BaseController
+class Auth::ConnectOpSampleImplicitController < Auth::BaseController
+  before_action :setup_swd, only: 'create'
   before_action :set_model_class
- 
 
   # ログイン処理
   # POST
   def catch_response
-    begin
-      id_token, access_token = Auth::Google.decode_token params, session[:nonce]
+    #begin
+      id_token, access_token = @model_class.decode_token params, session[:nonce]
 
       # Rails 6: `render text:` ではなく, `render plain:`
       render plain: "<p>id_token:<br />" + ERB::Util.html_escape(id_token.inspect) +
-                    "<p>client_id:<br />" + Auth::Google.options[:client_id] +
+                    "<p>client_id:<br />" + @model_class.options[:client_id] +
                     "<p>nonce:<br />" + session[:nonce],
              layout: false
       session.delete(:nonce)
 
+      # NoMethodError (undefined method `userinfo!' for an instance of String):
+      userinfo = access_token.userinfo!
+      raise userinfo.inspect
+      
       # この後ろがログイン処理
       # TODO: 
-    rescue Exception => err
-      render plain: 'Critical error: ' + ERB::Util.html_escape(err.inspect)
-    end
+    #rescue Exception => err
+    #  render plain: 'Critical error: ' + ERB::Util.html_escape(err.inspect)
+    #end
   end
 
   
 private
+  # for `before_action`
+  def setup_swd
+    # `http:` を通す。本来は不要
+    SWD.url_builder = URI::HTTP
+  end
+  
   def set_model_class
-    @model_class = Auth::Google
+    @model_class = Auth::ConnectOpSampleImplicit
   end
 
 end # class Auth::GoogleController

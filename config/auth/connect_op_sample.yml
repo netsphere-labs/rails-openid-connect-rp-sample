@@ -1,0 +1,23 @@
+
+# Google Cloud Platform
+# https://console.cloud.google.com/
+#   APIとサービス > 認証情報
+
+default: &defaults
+  # http://localhost:4000/.well-known/openid-configuration
+  # 末尾に "/" は付けない
+  issuer: http://localhost:4000
+
+development: 
+  <<: *defaults
+  # Connect Op Sample 側で発行
+  client_id: a4d86e26a9c2b446e5134c0fe1e82b68
+  client_secret: ed18299f399186382686b514c7b94252cd2b21582ca41dc1ef5fea3745d5258b
+  redirect_uri: http://localhost:3030/auth/connect_op_sample/callback
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  redirect_uri: https://connect-op.herokuapp.com/connect/google
