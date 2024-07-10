@@ -37,7 +37,7 @@ class Auth::ConnectOpSampleImplicitController < Auth::BaseController
              layout: false
       session.delete(:nonce)
 
-      # NoMethodError (undefined method `userinfo!' for an instance of String):
+      ● NoMethodError (undefined method `userinfo!' for an instance of String):
       userinfo = access_token.userinfo!
       raise userinfo.inspect
       

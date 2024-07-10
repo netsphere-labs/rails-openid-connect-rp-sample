@@ -98,6 +98,7 @@ class Auth::Base
               id_token.at_hash + ", " + left_half_hash_of(response['access_token'], hash_length)
       end
 
+      ●ここで decode してから返す
       return id_token, response['access_token']
     end
       
