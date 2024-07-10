@@ -11,7 +11,7 @@ OmniAuth を使っていたのを止め、実装しなおした。
 
 ## Features
 
-OpenID Connect Provider (OP) は Google と Yahoo JP, それに https://github.com/netsphere-labs/openid_connect_sample/
+OpenID Connect Provider (OP) は Google と Yahoo JP, それに [Rails OpenID Connect IdP AS](https://github.com/netsphere-labs/rails-openid-connect-idp-as/)
 
 このサンプルは, Just-in-time User Provisioning (JIT Provisioning) の例にもなっている。あらかじめユーザ登録されていなくても、シングルサインオンで回ってくるユーザ情報で自サイトにも登録する。
 
