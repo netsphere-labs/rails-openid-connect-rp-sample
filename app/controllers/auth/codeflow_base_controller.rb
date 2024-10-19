@@ -26,7 +26,7 @@ class Auth::CodeflowBaseController < ApplicationController
                     nonce: session[:nonce], # FAPI: `scope` に `openid` を含めるときは必須.
                     code_challenge: make_challenge(session[:code_verifier] ),
                     code_challenge_method:"S256"  # 必ずこっち
-                )
+                ), allow_other_host:true
   end
 
   

@@ -19,17 +19,17 @@
     <th>IdP  <th>Log-in   <th>Comment
 
   <tr><td>Google
-    <td><%= link_to "Googleでログイン (Code Flow with PKCE)", "/auth/google_codeflow", method: :post %>
+    <td><%= button_to "Googleでログイン (Code Flow with PKCE)", "/auth/google_codeflow", method: :post, data:{turbo:false} %>
 
   <tr><td>Yahoo JP
-    <td><%= link_to "Yahoo JP でログイン (Code Flow)", "/auth/yahoojp_codeflow", method: :post %>
+    <td><%= button_to "Yahoo JP でログイン (Code Flow)", "/auth/yahoojp_codeflow", method: :post, data:{turbo:false} %>
 
   <tr><td>Azure AD
-    <td><%= link_to "Azure AD でログイン (Code Flow)", "/auth/azure_ad_codeflow", method: :post %>
+    <td><%= button_to "Azure AD でログイン (Code Flow)", "/auth/azure_ad_codeflow", method: :post, data:{turbo:false} %>
     <td><i>OpenID Connect RP-Initiated Logout 1.0</i> をサポートしている。RP 側から <code>end_session_endpoint</code> に要求を投げる。
       
   <tr><td>Connect OP Sample
-    <td><%= link_to "Connect OP Sample でログイン (Code Flow with PKCE)", "/auth/connect_op_sample", method: :post %>
+    <td><%= button_to "Connect OP Sample でログイン (Code Flow with PKCE)", "/auth/connect_op_sample", method: :post, data:{turbo:false} %>
 </table>
 
 
@@ -43,19 +43,19 @@
     <th>IdP  <th>Log-in  <th>Comment
 
   <tr><td>Google
-    <td><%= link_to "Googleでログイン (Implicit Flow)", "/auth/google_implicit", method: :post %>
+    <td><%= button_to "Googleでログイン (Implicit Flow)", "/auth/google_implicit", method: :post, data:{turbo:false} %>
 
 
   <tr><td>Yahoo JP
-    <td><%= link_to "Yahoo JP でログイン (Implicit Flow)", "/auth/yahoojp_implicit", method: :post %>
+    <td><%= button_to "Yahoo JP でログイン (Implicit Flow)", "/auth/yahoojp_implicit", method: :post, data:{turbo:false} %>
     <td>動作しない。Yahoo JP は, 発行する <code>id_token</code> にユーザ情報を含めない。
 
   <tr><td>Azure AD
-    <td><%= link_to "Azure AD でログイン (Implicit Flow)", "/auth/azure_ad_implicit", method: :post %>
+    <td><%= button_to "Azure AD でログイン (Implicit Flow)", "/auth/azure_ad_implicit", method: :post, data:{turbo:false} %>
     <td>Azure AD の管理画面 (管理 &gt; 認証) にて, 暗黙的な許可を明示的に有効にしている場合のみ利用可能。デフォルトは無効。
 
   <tr><td>Connect OP Sample
-    <td><%= link_to "Connect OP Sample でログイン (Implicit Flow)", "/auth/connect_op_sample_implicit", method: :post %>
+    <td><%= button_to "Connect OP Sample でログイン (Implicit Flow)", "/auth/connect_op_sample_implicit", method: :post, data:{turbo:false} %>
 </table>
 
 

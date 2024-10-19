@@ -23,7 +23,7 @@
 <div style="background-color:#dddddd">
 <% if current_user %>    
   現在のユーザ: <%= current_user.name %>
-  <%= link_to "ログアウト", "/session", method: :delete %>
+  <%= button_to "ログアウト", "/user_session", method: :delete %>
 <% end %>
 </div>
 
