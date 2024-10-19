@@ -15,7 +15,7 @@ gem "rails", "~> 7.2.1"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-# v1.x系統でないといけない
+# rails v7.2 から sqlite3 v2 が使えるようになった。
 gem "sqlite3", "~> 2.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
