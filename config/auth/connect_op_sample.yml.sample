@@ -1,7 +1,7 @@
 
-# Google Cloud Platform
-# https://console.cloud.google.com/
-#   APIとサービス > 認証情報
+# IdP Sample
+# https://github.com/netsphere-labs/rails-openid-connect-idp-as/
+
 
 default: &defaults
   # http://localhost:4000/.well-known/openid-configuration
@@ -11,8 +11,8 @@ default: &defaults
 development: 
   <<: *defaults
   # Connect Op Sample 側で発行
-  client_id: a4d86e26a9c2b446e5134c0fe1e82b68
-  client_secret: ed18299f399186382686b514c7b94252cd2b21582ca41dc1ef5fea3745d5258b
+  client_id: f714648330c6a5809395f40844c939ea
+  client_secret: b9e106b37cecae805e02bbadd38b7210bd15aa5cbdac623b508ee46b03df8424
   redirect_uri: http://localhost:3030/auth/connect_op_sample/callback
 
 test:
