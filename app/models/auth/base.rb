@@ -80,6 +80,7 @@ class Auth::Base
       Base64.urlsafe_encode64 digest[0, hash_length / (2 * 8)], padding:false
     end
 
+    # @return [OpenIDConnect::ResponseObject::IdToken, OpenIDConnect::AccessToken]
     def decode_token response, nonce
       id_token = OpenIDConnect::ResponseObject::IdToken.decode(
                         response['id_token'],
@@ -98,8 +99,7 @@ class Auth::Base
               id_token.at_hash + ", " + left_half_hash_of(response['access_token'], hash_length)
       end
 
-      ●ここで decode してから返す
-      return id_token, response['access_token']
+      return [id_token, OpenIDConnect.AccessToken.new(client:client, id_token:id_token, access_token:response['access_token'])]
     end
       
   end # class << self

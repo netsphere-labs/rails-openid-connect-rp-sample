@@ -11,7 +11,7 @@ class Auth::BaseController < ApplicationController
                   response_type: 'id_token token', # Implicit Flow
                   state: session[:state],
                   nonce: session[:nonce], # Implicit Flow では必須            
-                )
+                ), allow_other_host: true
   end
 
   # IdP からの redirect back

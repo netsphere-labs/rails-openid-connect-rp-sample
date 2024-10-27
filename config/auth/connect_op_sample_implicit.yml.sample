@@ -11,8 +11,7 @@ default: &defaults
 development: 
   <<: *defaults
   # Connect Op Sample 側で発行
-  client_id: 5e8cca22e24630aa47e201c987980028
-  client_secret: c88f2783e0d4a73d0db105c56144a555023998e3d0d0f3f3e6675552c2f23707
+  client_id: f714648330c6a5809395f40844c939ea
   redirect_uri: http://localhost:3030/auth/connect_op_sample_implicit/callback
 
 test:
