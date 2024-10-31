@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       get 'callback'  # redirect back
     end
 
+    
     # The Implicit Flow ############################################
     
     resource :google_implicit, controller:'google_implicit' do
@@ -57,10 +58,6 @@ Rails.application.routes.draw do
       post 'catch_response'
     end
 
-    resource :yahoojp do
-      get 'callback'  # redirect back
-      post 'catch_response'
-    end
   end
 end
 
