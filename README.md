@@ -18,9 +18,11 @@ OpenID Connect Provider (OP) は Google と Yahoo JP, それに [Rails OpenID Co
 
 (1) Authorization Code Flow with PKCE によるログイン
 
- - Google 実装すみ
+ - ✅ Google 実装すみ
+ - ✅ Entra ID (旧 Azure AD) 実装すみ
  - Rails OpenID Connect IdP AS  実装すみ
- - Yahoo! JAPAN, Azure AD    ●●未了
+ - <s>Yahoo! JAPAN</s> PPID しか返さず、認証 (本人確認) 目的には使いがたい
+
 
 生の OAuth 2.0 の Implicit Flow を「認証」に使おうとすると、すごく巨大な穴が空く。OpenID Connect の Implicit Flow はその穴を塞いでいるので問題ない。しかし、巷の解説では混同しているものが非常に多い。
 
@@ -35,13 +37,14 @@ OAuth 2.1 は, 穴を塞ぐのではなく, 単に Implicit Flow を廃止にし
 
 [OpenID Connect Implicit Client Implementer's Guide 1.0](https://openid.net/specs/openid-connect-implicit-1_0.html) を実装。
 
+ - ✅ Google 実装すみ
+ - ✅ Entra ID (旧 Azure AD) 実装すみ. 管理画面で Implicit Flow を有効にしている場合のみ (デフォルト無効)。
+
 `omniauth_openid_connect` v0.4.0 は, <code>response_type=id_token</code> しかサポートしていない。これはアクセストークンが得られず、妥当ではない。
 
 仕様では, IdP は, アクセストークンを発行しない場合に限って <code>id_token</code> レスポンスにユーザ情報を含めることになっている (Core 1.0: section 5.4) が、Yahoo! JAPAN ID 連携はこの仕様に適合せずユーザ情報を含めないので、動作しない。
 
 ポータビリティのため, クライアントから `id_token token` を投げたうえで, UserInfo エンドポイントからユーザ情報を取得する。
-
-Azure AD は、管理画面で Implicit Flow を有効にしている場合のみ。
 
 
 

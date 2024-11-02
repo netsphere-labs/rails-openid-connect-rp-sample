@@ -99,7 +99,7 @@ class Auth::Base
               id_token.at_hash + ", " + left_half_hash_of(response['access_token'], hash_length)
       end
 
-      return [id_token, OpenIDConnect.AccessToken.new(client:client, id_token:id_token, access_token:response['access_token'])]
+      return [id_token, OpenIDConnect::AccessToken.new(client:client, id_token:id_token, access_token:response['access_token'])]
     end
       
   end # class << self

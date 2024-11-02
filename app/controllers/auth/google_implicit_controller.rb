@@ -20,7 +20,7 @@ ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticit
 =end
 
 
-class Auth::GoogleImplicitController < Auth::BaseController
+class Auth::GoogleImplicitController < Auth::ImplicitBaseController
   before_action :set_model_class
  
 
@@ -28,17 +28,20 @@ class Auth::GoogleImplicitController < Auth::BaseController
   # POST
   def catch_response
     begin
-      id_token, access_token = Auth::Google.decode_token params, session[:nonce]
+      id_token, access_token = @model_class.decode_token params, session[:nonce]
 
       # Rails 6: `render text:` ではなく, `render plain:`
       render plain: "<p>id_token:<br />" + ERB::Util.html_escape(id_token.inspect) +
-                    "<p>client_id:<br />" + Auth::Google.options[:client_id] +
+                    "<p>client_id:<br />" + @model_class.options[:client_id] +
                     "<p>nonce:<br />" + session[:nonce],
              layout: false
       session.delete(:nonce)
 
       # この後ろがログイン処理
-      # TODO: 
+      # TODO:
+    rescue NoMethodError, NameError 
+      #render plain: err.inspect
+      raise
     rescue Exception => err
       render plain: 'Critical error: ' + ERB::Util.html_escape(err.inspect)
     end
@@ -47,7 +50,7 @@ class Auth::GoogleImplicitController < Auth::BaseController
   
 private
   def set_model_class
-    @model_class = Auth::Google
+    @model_class = Auth::GoogleImplicit
   end
 
 end # class Auth::GoogleController

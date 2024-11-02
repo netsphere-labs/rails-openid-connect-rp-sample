@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-class Auth::BaseController < ApplicationController
+class Auth::ImplicitBaseController < ApplicationController
   # POST /auth/google
   def create
     raise SecurityError if request.request_method != 'POST'

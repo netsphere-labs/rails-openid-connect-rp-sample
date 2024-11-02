@@ -25,8 +25,8 @@
     <td><s>Yahoo JP でログイン (Code Flow)</s>
     <td>Yahoo! ID連携は, UserInfo スコープが個別審査になった。ユーザ識別子が PPID (Pairwise Pseudonymous Identifier) になった。認証で本人確認目的には使えない。 
       
-  <tr><td>Azure AD
-    <td><%= button_to "Azure AD でログイン (Code Flow)", "/auth/azure_ad_codeflow", method: :post, data:{turbo:false} %>
+  <tr><td>Entra ID (旧 Azure AD)
+    <td><%= button_to "Entra ID でログイン (Code Flow w/ PKCE)", "/auth/entra_id_codeflow", method: :post, data:{turbo:false} %>
     <td><i>OpenID Connect RP-Initiated Logout 1.0</i> をサポートしている。RP 側から <code>end_session_endpoint</code> に要求を投げる。
       
   <tr><td>Connect OP Sample
@@ -51,8 +51,8 @@
     <td><s>Yahoo JP でログイン (Implicit Flow)</s>
     <td>Yahoo JP は, 発行する <code>id_token</code> にユーザ情報を含めない。
 
-  <tr><td>Azure AD
-    <td><%= button_to "Azure AD でログイン (Implicit Flow)", "/auth/azure_ad_implicit", method: :post, data:{turbo:false} %>
+  <tr><td>Entra ID (旧 Azure AD)
+    <td><%= button_to "Entra ID でログイン (Implicit Flow)", "/auth/entra_id_implicit", method: :post, data:{turbo:false} %>
     <td>Azure AD の管理画面 (管理 &gt; 認証) にて, 暗黙的な許可を明示的に有効にしている場合のみ利用可能。デフォルトは無効。
 
   <tr><td>Connect OP Sample

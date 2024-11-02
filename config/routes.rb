@@ -37,11 +37,16 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   namespace :auth do
-    resource :connect_op_sample, controller:'connect_op_sample', only:[:create] do
+    resource :google_codeflow, controller:'google_codeflow', only:[:create] do
       get 'callback'  # redirect back
     end
 
-    resource :google_codeflow, controller:'google_codeflow', only:[:create] do
+    # Entra ID (旧 Azure AD)
+    resource :entra_id_codeflow, controller:'entra_id_codeflow', only:[:create] do
+      get 'callback'  # redirect back
+    end
+
+    resource :connect_op_sample, controller:'connect_op_sample', only:[:create] do
       get 'callback'  # redirect back
     end
 
@@ -53,6 +58,11 @@ Rails.application.routes.draw do
       post 'catch_response'
     end
 
+    resource :entra_id_implicit, controller:'entra_id_implicit' do
+      get 'callback'  # redirect back
+      post 'catch_response'
+    end
+    
     resource :connect_op_sample_implicit, controller:'connect_op_sample_implicit' do
       get 'callback'  # redirect back
       post 'catch_response'
