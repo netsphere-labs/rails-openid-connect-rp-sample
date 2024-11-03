@@ -26,11 +26,11 @@ class Auth::ConnectOpSample < Auth::Base
     #=> {"iss"=>"http://localhost:4000", "sub"=>"41423a1073fed80b", "aud"=>"f714648330c6a5809395f40844c939ea", "exp"=>1729998465, "iat"=>1729998165, "nonce"=>"flVbHRpazGcAdjCrPK0noRUDqgwiNi5ZOCjj0S8Bg0Z"}
 
     userinfo = token.userinfo!
-    raise userinfo.inspect
-    email = userinfo[:email]
+    #raise userinfo.inspect
+    email = userinfo.email
     user = User.find_by_email(email) || User.new(email:email)
-    user.name = userinfo[:name]
-    user.image = userinfo[:picture]
+    user.name = userinfo.name
+    user.image = userinfo.picture
     user.save!
 
     return user

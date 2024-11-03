@@ -20,7 +20,7 @@ OpenID Connect Provider (OP) は Google と Yahoo JP, それに [Rails OpenID Co
 
  - ✅ Google 実装すみ
  - ✅ Entra ID (旧 Azure AD) 実装すみ
- - Rails OpenID Connect IdP AS  実装すみ
+ - ✅ Rails OpenID Connect IdP AS  実装すみ
  - <s>Yahoo! JAPAN</s> PPID しか返さず、認証 (本人確認) 目的には使いがたい
 
 
@@ -39,6 +39,7 @@ OAuth 2.1 は, 穴を塞ぐのではなく, 単に Implicit Flow を廃止にし
 
  - ✅ Google 実装すみ
  - ✅ Entra ID (旧 Azure AD) 実装すみ. 管理画面で Implicit Flow を有効にしている場合のみ (デフォルト無効)。
+ - ✅ Rails OpenID Connect IdP AS  実装すみ
 
 `omniauth_openid_connect` v0.4.0 は, <code>response_type=id_token</code> しかサポートしていない。これはアクセストークンが得られず、妥当ではない。
 

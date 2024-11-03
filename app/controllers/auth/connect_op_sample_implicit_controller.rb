@@ -40,7 +40,7 @@ class Auth::ConnectOpSampleImplicitController < Auth::ImplicitBaseController
     userinfo = access_token.userinfo!
     
     #<OpenIDConnect::ResponseObject::UserInfo:0x00007f00be0d40b0 @sub="f832cc2d15eb8fb0", @name="Ronald Schoen", @given_name=nil, @family_name=nil, @middle_name=nil, @nickname=nil, @preferred_username=nil, @profile="http://kirlin.test/timothy_ziemann", @picture=nil, @website=nil, @email=nil, @email_verified=nil, @gender=nil, @birthdate=nil, @zoneinfo=nil, @locale="en-GB", @phone_number="0350 995 8242", @phone_number_verified=nil, @address=nil, @updated_at=nil, @raw_attributes={"sub"=>"f832cc2d15eb8fb0", "name"=>"Ronald Schoen", "profile"=>"http://kirlin.test/timothy_ziemann", "locale"=>"en-GB", "phone_number"=>"0350 995 8242"}>
-    raise userinfo.inspect
+    #raise userinfo.inspect
       
       # この後ろがログイン処理
       # TODO: 
